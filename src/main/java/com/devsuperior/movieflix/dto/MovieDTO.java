@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.devsuperior.movieflix.entities.Movie;
+import com.devsuperior.movieflix.entities.Review;
 
 public class MovieDTO implements Serializable {
 
@@ -35,6 +36,8 @@ public class MovieDTO implements Serializable {
 		this.genreId = genreId;
 	}
 	
+
+	
 	public MovieDTO(Movie movie) {
 		id = movie.getId();
 		title = movie.getTitle();
@@ -43,10 +46,9 @@ public class MovieDTO implements Serializable {
 		imgUrl = movie.getImgUrl();
 		synopsis = movie.getSynopsis();
 		genreId = movie.getGenre().getId();
-		reviews = movie.getReviews().stream()
-				.map(review -> new ReviewDTO(review))
-				.collect(Collectors.toList());
+		reviews = movie.getReviews().stream().map(review -> new ReviewDTO(review)).collect(Collectors.toList());
 	}
+	
 
 	public Long getId() {
 		return id;
