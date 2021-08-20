@@ -11,7 +11,7 @@ import com.devsuperior.movieflix.entities.Movie;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 	
 	@Query("SELECT obj FROM Movie obj WHERE "
-			+ "(obj.genre = :genre) ")
+			+ ":genre IS NULL OR :genre = obj.genre")
 	Page<Movie> findByGenre(Genre genre, Pageable pageable);
 
 }
