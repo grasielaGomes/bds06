@@ -18,17 +18,20 @@ public class ReviewDTO implements Serializable {
 	private Long movieId;
 	private Long userId;
 	
+	private UserDTO user;
+	
 	
 	public ReviewDTO() {
 		
 	}
 
 
-	public ReviewDTO(Long id, String text, Long movieId, Long userId) {
+	public ReviewDTO(Long id, String text, Long movieId, Long userId, UserDTO user) {
 		this.id = id;
 		this.text = text;
 		this.movieId = movieId;
 		this.userId = userId;
+		this.user = user;
 	}
 	
 	public ReviewDTO(Review review) {
@@ -36,6 +39,7 @@ public class ReviewDTO implements Serializable {
 		text = review.getText();
 		movieId = review.getMovie().getId();
 		userId = review.getUser().getId();
+		user = new UserDTO(review.getUser());
 	}
 
 
@@ -76,6 +80,16 @@ public class ReviewDTO implements Serializable {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 	
 
